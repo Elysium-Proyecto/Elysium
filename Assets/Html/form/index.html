@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Editor de Texto</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <img src="Img/Logo-Colored.png" alt="" class="menu-logo" />
+    <nav id="Menu">
+      <ul>
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="">Eventos</a></li>
+        <li><a href="#">Foros</a></li>
+        <li><a href="#">Plataforma LMS</a></li>
+      </ul>
+    </nav>
+    <button type="button">Iniciar Sesión</button>
+  </header>
+
+  <div class="cabeza">
+    <input type="text" id="tituloInput" class="title" placeholder="Agregar el título de la tarea"><br>
+    <input type="text" id="descripcionInput" class="descripcion" placeholder="Agregar una descripción o nota de la tarea">
+  </div>
+
+  <main>
+    <section class="editor">
+      <div class="toolbar">
+        <!-- Botones de formato -->
+        <button onclick="ejecutar('bold')"><b>N</b></button>
+        <button onclick="ejecutar('italic')"><i>K</i></button>
+        <button onclick="ejecutar('underline')"><u>S</u></button>
+        <button onclick="ejecutar('strikeThrough')"><s>ABC</s></button>
+        <select onchange="ejecutar('fontName', this.value)">
+          <option value="Arial">Arial</option>
+          <option value="Courier New">Courier</option>
+          <option value="Georgia">Georgia</option>
+          <option value="Tahoma">Tahoma</option>
+          <option value="Times New Roman">Times</option>
+          <option value="Verdana">Verdana</option>
+        </select>
+        <select onchange="ejecutar('fontSize', this.value)">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+        </select>
+        <input type="color" onchange="ejecutar('foreColor', this.value)" />
+        <button onclick="ejecutar('justifyLeft')">Izquierda</button>
+        <button onclick="ejecutar('justifyCenter')">Centro</button>
+        <button onclick="ejecutar('justifyRight')">Derecha</button>
+        <button onclick="ejecutar('justifyFull')">Justificar</button>
+        <button onclick="ejecutar('insertUnorderedList')">Lista</button>
+        <button onclick="ejecutar('insertOrderedList')">Lista Numerada</button>
+      </div>
+
+      <div id="editor" contenteditable="true" class="text-editor">
+        <!-- El usuario podrá escribir aquí -->
+      </div>
+    </section>
+
+    <!-- Barra lateral -->
+    <aside class="sidebar">
+      <h3>Opciones Adicionales</h3>
+      <label for="subject">Seleccionar Materia:</label>
+      <select id="subject">
+        <option value="Matemáticas">6toA Multimedia</option>
+        <option value="Ciencias">6toB Multimedia</option>
+        <option value="Historia">6toC Software</option>
+        <option value="Inglés">6toD Redes</option>
+      </select>
+
+      <label for="fecha">Fecha de entrega:</label>
+      <input type="date" id="due-date">
+
+      <div class="archivo">
+        <label for="upload-image">Imagen</label>
+        <input type="file" id="upload-image" accept="image/*">
+
+        <label for="upload-file">Documento</label>
+        <input type="file" id="upload-file" accept=".doc, .pdf, .ppt, .xlsx">
+      </div>
+
+      <!-- Botones para subir tarea o agregar a la agenda -->
+      <div class="boton">
+        <button id="upload-task">Subir Tarea</button>
+        <button id="add-to-agenda">Agregar a la Agenda</button>
+      </div>
+    </aside>
+  </main>
+
+  <script src="app.js"></script>
+
+  <script>
+// Función para ejecutar comandos de edición y formato
+function ejecutar(command, value = null) {
+    document.execCommand(command, false, value);
+  }
+  
+  // Función para cambiar el color de fondo del texto seleccionado
+  function changeBackColor(color) {
+    ejecutar('backColor', color);
+  }
+  
+  //prueba para mostrar el contenido del editor en consola
+  function showContent() {
+    const content = document.getElementById('editor').innerHTML;
+    console.log(content);
+  }
+  
+  // Desactiva el comportamiento predeterminado 
+  document.querySelectorAll('button, select').forEach(element => {
+    element.addEventListener('touchstart', function (e) {
+      e.preventDefault();
+    });
+  });
+  
+  // Función para inicializar el editor de texto
+  function initEditor() {
+    const editor = document.getElementById('editor');
+  
+    // Listeners para cambiar formato
+    document.getElementById('boldBtn').addEventListener('click', () => ejecutar('bold'));
+    document.getElementById('italicBtn').addEventListener('click', () => ejecutar('italic'));
+    document.getElementById('underlineBtn').addEventListener('click', () => ejecutar('underline'));
+    document.getElementById('strikeBtn').addEventListener('click', () => ejecutar('strikeThrough'));
+  
+    // Cambiar fuente
+    document.getElementById('fontSelect').addEventListener('change', (e) => {
+      ejecutar('fontName', e.target.value);
+    });
+  
+    // Cambiar tamaño de fuente
+    document.getElementById('fontSizeSelect').addEventListener('change', (e) => {
+      ejecutar('fontSize', e.target.value);
+    });
+  
+    // Cambiar color de texto
+    document.getElementById('colorPicker').addEventListener('change', (e) => {
+      ejecutar('foreColor', e.target.value);
+    });
+  
+    // Alineación
+    document.getElementById('alignLeft').addEventListener('click', () => ejecutar('justifyLeft'));
+    document.getElementById('alignCenter').addEventListener('click', () => ejecutar('justifyCenter'));
+    document.getElementById('alignRight').addEventListener('click', () => ejecutar('justifyRight'));
+    document.getElementById('alignFull').addEventListener('click', () => ejecutar('justifyFull'));
+  
+    // Listas
+    document.getElementById('unorderedList').addEventListener('click', () => ejecutar('insertUnorderedList'));
+    document.getElementById('orderedList').addEventListener('click', () => ejecutar('insertOrderedList'));
+  
+    // prueba consola
+    document.getElementById('showContentBtn').addEventListener('click', showContent);
+  }
+  </script>
+</body>
+</html>
