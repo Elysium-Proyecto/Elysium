@@ -1,0 +1,342 @@
+<!-- @format -->
+
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sistema de Gestión de Aprendizaje Elysium</title>
+    <link rel="stylesheet" href="./DashboarInicio/styles.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> 
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+  <body>
+    <header class="main-header">
+      <div class="logo">
+        <img src="./DashboarInicio/img/logo.jpg" alt="" srcset="" width="100px" height="40px" />
+      </div>
+      <nav class="main-nav">
+        <a href="#" class="nav-link">Inicio</a>
+        <a href="programar_Eventos.html" class="nav-link">Eventos</a>
+        <a href="foro_Admin.html" class="nav-link" id="forumLink">Foro</a>
+        <a href="#" class="nav-link active">Plataforma LMS</a>
+      </nav>
+      <div class="user-actions">
+        <select id="modeSelect" class="mode-select">
+          <option value="profesor">Modo Profesor</option>
+          <option value="admin">Modo Admin</option>
+        </select>
+        <button id="notifications-btn"><i class="fas fa-bell"></i><span id="notification-count">0</span></button>
+      </div>
+    </header>
+    <div class="container">
+      <aside class="sidebar">
+        <nav id="sideNav" class="side-nav"></nav>
+      </aside>
+      <main id="mainContent" class="main-content">
+        <!-- Sección de Dashboard -->
+        <section id="dashboard" class="page">
+          <h2 class="section-title">Dashboard</h2>
+          <div class="dashboard-grid">
+            <div class="dashboard-card">
+              <h3>Total de Usuarios</h3>
+              <div class="stat">1,234</div>
+            </div>
+            <div class="dashboard-card">
+              <h3>Cursos Activos</h3>
+              <div class="stat">42</div>
+            </div>
+            <div class="dashboard-card">
+              <h3>Nuevas Inscripciones</h3>
+              <div class="stat">156</div>
+            </div>
+            <div class="dashboard-card">
+              <h3>Actividad del Foro</h3>
+              <div class="stat">85%</div>
+            </div>
+          </div>
+        </section>
+
+        <!--profesor section-->
+        <!--mis clases-->
+        <section id="classes" class="classes , page" style="display: none">
+          <h2 class="section-title">Clases</h2>
+          <div class="class-list">
+            <div class="class-item">
+              <h3 class="class-name">Matematicas</h3>
+              <p class="class-progress">Progreso: 60%</p>
+              <p class="class-students">Estudiantes: 3</p>
+              <button class="btn view-students-btn" data-class-id="1">
+                Ver Estudiantes
+              </button>
+            </div>
+            <div class="class-item">
+              <h3 class="class-name">Matematicas 2</h3>
+              <p class="class-progress">Progreso: 80%</p>
+              <p class="class-students">Estudiantes: 6</p>
+              <button class="btn view-students-btn" data-class-id="2">
+                Ver Estudiantes
+              </button>
+            </div>
+            <div class="class-item">
+              <h3 class="class-name">Fisica cuantica</h3>
+              <p class="class-progress">Progreso: 94%</p>
+              <p class="class-students">Estudiantes: 8</p>
+              <button class="btn view-students-btn" data-class-id="3">
+                Ver Estudiantes
+              </button>
+            </div>
+          </div>
+        </section>
+        <!--Cursos-->
+        <section id="classes" class="classes , page" style="display: none">
+          <h2 class="section-title">Mis clases</h2>
+          <div class="classes"></div>
+        </section>
+
+        <!-- Sección de Asignaciones -->
+        <section id="assignments" class="page" style="display: none">
+          <h2 class="section-title">Gestión de Asignaciones</h2>
+          <div class="assignments-container">
+            <div class="course-selection">
+              <select id="courseSelect">
+                <option value="">Seleccionar Curso</option>
+                <option value="matematicas">Matemáticas-5B</option>
+                <option value="fisica">Física-6C</option>
+                <option value="literatura">Lengua Española-6A</option>
+              </select>
+            </div>
+            <div id="assignmentsList" class="assignments-list">
+              <!-- lista de las asignacions se agregan con js-->
+            </div>
+            <a
+              href="programar_tarea_asignaciones.html"
+              id="addAssignmentBtn"
+              class="btn btn-primary"
+              style="text-decoration: none"
+            >
+              Subir asignacion
+            </a>
+          </div>
+        </section>
+        <!--section aparte-->
+        <!--fin de la section aparte-->
+
+        <!--admin section-->
+
+        <!--clases y mas, calificaciones-->
+
+        <section id="grades" class="page" style="display: none">
+          <h2 class="section-title">calificaciones</h2>
+        </section>
+
+        <!-- User Management Section -->
+        <section id="users" class="page" style="display: none">
+          <h2 class="section-title">Gestión de Usuarios</h2>
+          <button id="addUserBtn" class="btn">Agregar Usuario</button>
+          <div id="usersList" class="users-list"></div>
+        </section>
+
+        <!-- Courses Section -->
+        <section id="courses" class="page" style="display: none">
+          <h2 class="section-title">Gestión de Cursos</h2>
+          <button id="addCourseBtn" class="btn">Agregar Curso</button>
+          <div id="coursesList" class="courses-list"></div>
+        </section>
+
+        <!-- Classes Section -->
+        <section id="admin-classes" class="page" style="display: none">
+          <h2 class="section-title">Gestión de Clases</h2>
+          <button id="addClassBtn" class="btn">Agregar Nueva Clase</button>
+          <div id="classesList" class="classes-list"></div>
+        </section>
+
+        <section id="admin-classes" class="page" style="display: none">
+          <h2 class="section-title">Gestión de Clases</h2>
+          <button id="addClassBtn" class="btn add-class-btn">
+            Agregar Nueva Clase
+          </button>
+          <div class="class-list">
+            <div class="class-item">
+              <h3 class="class-name"></h3>
+              <p class="class-teacher">Profesor:</p>
+              <p class="class-students">Estudiantes:</p>
+              <button class="btn assign-teacher-btn" data-class-id="1">
+                Asignar Profesor
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <!-- Sección de Configuración -->
+        <section id="settings" class="page" style="display: none">
+          <h2 class="section-title">Configuración del Sistema</h2>
+          <div class="settings-grid">
+            <div class="settings-card">
+              <h3>Configuración General</h3>
+              <form id="generalSettingsForm">
+                <label for="siteName">Nombre del Sitio:</label>
+                <input
+                  type="text"
+                  id="siteName"
+                  name="siteName"
+                  value="Elysium LMS"
+                />
+
+                <label for="siteLanguage">Idioma Principal:</label>
+                <select id="siteLanguage" name="siteLanguage">
+                  <option value="es">Español</option>
+                  <option value="en">English</option>
+                  <option value="fr">Français</option>
+                </select>
+
+                <label for="timeZone">Zona Horaria:</label>
+                <select id="timeZone" name="timeZone">
+                  <option value="UTC-5">EST (UTC-5)</option>
+                  <option value="UTC-6">CST (UTC-6)</option>
+                  <option value="UTC-7">MST (UTC-7)</option>
+                  <option value="UTC-8">PST (UTC-8)</option>
+                </select>
+
+                <button type="submit" class="btn">Guardar Cambios</button>
+              </form>
+            </div>
+
+            <div class="settings-card">
+              <h3>Configuración de Correo</h3>
+              <form id="emailSettingsForm">
+                <label for="smtpUsername">Usuario SMTP:</label>
+                <input type="text" id="smtpUsername" name="smtpUsername" />
+
+                <label for="smtpPassword">Contraseña SMTP:</label>
+                <input type="password" id="smtpPassword" name="smtpPassword" />
+
+                <button type="submit" class="btn">Guardar Configuración</button>
+              </form>
+            </div>
+
+            <div class="settings-card">
+              white;
+              <h3>Configuración de Seguridad</h3>
+              <form id="securitySettingsForm">
+                <label for="passwordPolicy">Política de Contraseñas:</label>
+                <select id="passwordPolicy" name="passwordPolicy">
+                  <option value="low">Baja (mínimo 6 caracteres)</option>
+                  <option value="medium">
+                    Media (mínimo 8 caracteres, 1 mayúscula, 1 número)
+                  </option>
+                  <option value="high">
+                    Alta (mínimo 10 caracteres, 1 mayúscula, 1 número, 1
+                    símbolo)
+                  </option>
+                </select>
+
+                <label for="sessionTimeout"
+                  >Tiempo de Expiración de Sesión (minutos):</label
+                >
+                <input
+                  type="number"
+                  id="sessionTimeout"
+                  name="sessionTimeout"
+                  value="30"
+                />
+
+                <label for="twoFactorAuth">
+                  <input
+                    type="checkbox"
+                    id="twoFactorAuth"
+                    name="twoFactorAuth"
+                  />
+                  Habilitar Autenticación de Dos Factores
+                </label>
+
+                <button type="submit" class="btn">Actualizar Seguridad</button>
+              </form>
+            </div>
+          </div>
+        </section>
+
+        <!-- Sección de Reportes -->
+        <section id="reports" class="page" style="display: none">
+          <h2 class="section-title">Reportes y Análisis</h2>
+          <div class="reports-grid">
+            <div class="report-card">
+              <h3>Resumen de Actividad</h3>
+              <canvas id="activityChart"></canvas>
+              <p>Actividad de usuarios en los últimos 30 días</p>
+            </div>
+
+            <div class="report-card">
+              <h3>Progreso de Estudiantes</h3>
+              <canvas id="progressChart"></canvas>
+              <p>Progreso promedio de estudiantes por curso</p>
+            </div>
+
+            <div class="report-card">
+              <h3>Estadísticas de Cursos</h3>
+              <table class="report-table">
+                <thead>
+                  <tr>
+                    <th>Curso</th>
+                    <th>Estudiantes</th>
+                    <th>Promedio</th>
+                    <th>Tasa de Finalización</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Matemáticas 101</td>
+                    <td>150</td>
+                    <td>85%</td>
+                    <td>92%</td>
+                  </tr>
+                  <tr>
+                    <td>Física 201</td>
+                    <td>120</td>
+                    <td>78%</td>
+                    <td>85%</td>
+                  </tr>
+                  <tr>
+                    <td>Literatura 301</td>
+                    <td>90</td>
+                    <td>88%</td>
+                    <td>95%</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="report-card">
+              <h3>Generar Reportes Personalizados</h3>
+              <form id="customReportForm">
+                <label for="reportType">Tipo de Reporte:</label>
+                <select id="reportType" name="reportType">
+                  <option value="userActivity">Actividad de Usuarios</option>
+                  <option value="courseCompletion">
+                    Finalización de Cursos
+                  </option>
+                  <option value="studentPerformance">
+                    Rendimiento de Estudiantes
+                  </option>
+                </select>
+
+                <label for="dateRange">Rango de Fechas:</label>
+                <input type="date" id="startDate" name="startDate" />
+                <input type="date" id="endDate" name="endDate" />
+
+                <button type="submit" class="btn">Generar Reporte</button>
+              </form>
+            </div>
+          </div>
+        </section>
+
+        <!-- Eventos Section -->
+         <section id="events" class="page" style="display: none;">
+        </section>
+      </main>
+    </div>
+    <script src="./DashboarInicio/script.js"></script>
+  </body>
+</html>

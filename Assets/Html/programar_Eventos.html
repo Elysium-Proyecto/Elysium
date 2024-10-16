@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elysium-Eventos</title>
+    <link rel="stylesheet" href="./Eventos/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <header>
+        <img src="./DashboarInicio/img/logo.jpg" alt="" class="menu-logo" />
+        <nav id="Menu">
+          <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#" class="active">Eventos</a></li>
+            <li><a href="foro_Admin.html">Foro</a></li>
+            <li><a href="DashBoard-Admin.html">Plataforma LMS</a></li>
+          </ul>
+        </nav>
+        <button type="button" class="login-btn">Iniciar Sesión</button>
+    </header>
+
+    <main>
+        <button id="add-event-btn" class="add-event-btn">
+            <i data-lucide="plus-circle"></i>
+            Añadir Evento
+        </button>
+
+        <div id="event-form-modal" class="modal">
+            <div class="modal-content">
+                <span class="close-btn">&times;</span>
+                <h2 id="form-title">Subir Evento:</h2>
+                <form id="event-form">
+                    <div class="form-left">
+                        <input type="text" id="event-title" name="event-title" placeholder="Título">
+                        <input type="text" id="event-subtitle" name="event-subtitle" placeholder="Sub-Título">
+                        <input type="date" id="event-date" name="event-date">
+                        <input type="text" id="event-location" name="event-location" placeholder="Lugar">
+                    </div>
+                    <div class="form-right">
+                        <div class="image-upload">
+                            <label for="event-image" class="image-upload-label">
+                                <img src="placeholder-image.png" alt="Agregar Imagen" id="image-preview">
+                                <span>
+                                    <i data-lucide="image-plus"></i>
+                                    Agregar Imagen
+                                </span>
+                            </label>
+                            <input type="file" id="event-image" name="event-image" accept="image/*" style="display: none;">
+                        </div>
+                        <div class="image-options">
+                            <input type="radio" id="option1" name="image-option" checked>
+                            <input type="radio" id="option2" name="image-option">
+                            <input type="radio" id="option3" name="image-option">
+                        </div>
+                        <textarea id="event-description" name="event-description" placeholder="Agregar Descripción..."></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">
+                        <i data-lucide="send"></i>
+                        Enviar Evento
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <section id="events-list">
+            <!-- Aquí se mostrarán los eventos creados -->
+        </section>
+    </main>
+
+    <script src="./Eventos/Script.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

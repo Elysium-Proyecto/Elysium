@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configuración</title>
+    <link rel="stylesheet" href="../Css/config.css">
+</head>
+
+<body>
+    <header id="header">
+        <img src="../Img/logo_icono-removebg-preview.png" alt="" class="menu-logo" />
+        <nav id="Menu">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a id="h-link" href="dark.html">Eventos</a></li>
+                <li><a id="h-link2" href="#">Foros</a></li>
+                <li><a id="h-link3" href="#" class="active">Plataforma LMS</a></li>
+            </ul>
+        </nav>
+        <div class="icono_menu">
+            <a href=""><img src="../Img/campana.png" alt="Icono Notificaciones"></a>
+            <a href="config.html"><img src="../Img/configuracion-del-usuario.png" alt="Icono Confi"></a>
+        </div>
+        <div class="icono_menu-dark">
+            <a href=""><img src="../Img/campana-white.png" alt="Icono Notificaciones"></a>
+            <a href="config.html"><img src="../Img/configuracion-del-usuario-white.png" alt="Icono Confi bla"></a>
+        </div>
+    </header>
+    <div class="container-all">
+        <div class="grid">
+            <div class="sub-cont">
+                <div class="perfil">
+                    <label id="profile" for="">Perfil</label>
+                    <div id="u-img" class="u-img"></div>
+                </div>
+                <div class="p-info">
+                    <div class="edit-align">
+                        <p id="u-name" class="u-name">Nombre de usuario:</p>
+                        <input class="e-name" type="text" name="" id="e-name">
+                        <div id="result1" class="result"></div>
+                    </div>
+                    <div class="edit-align">
+                        <p id="u-email" class="u-email"><strong>Correo:</strong></p>
+                        <input class="e-email" type="text" name="" id="e-email">
+                        <div id="result2" class="result"></div>
+                    </div>
+                    <div class="edit-align">
+                        <p id="u-id" class="u-id">Matricula:</p>
+                        <input class="e-id" type="number" name="" id="e-id">
+                        <div id="result3" class="result"></div>
+                    </div>
+                    <form action="#" method="post">
+                        <button onclick="editoption()" type="button" id="edit-button" class="edit">Editar</button>
+                        <button onclick="accepted()" type="button" id="accept-button" class="accept">Aceptar</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="part2">
+                <div class="sub-cont">
+                    <label for="" id="darkmode">Modo oscuro</label>
+                    <div class="container">
+                        <input type="checkbox" class="checkbox" id="checkbox">
+                        <label class="switch" for="checkbox">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                </div>
+                <div class="sub-cont">
+                    <label for="" id="noti">Notificaciones</label>
+                    <div class="container2">
+                        <input type="checkbox" class="checkbox2" id="checkbox2">
+                        <label class="switch2" for="checkbox2">
+                            <span class="slider2"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="sub-cont">
+                    <label for="" id="tongue">Idioma</label>
+                    <select class="language" name="" id="language">
+                        <option id="es" value="es" selected>Español</option>
+                        <option id="en" value="en">English</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="btn_atras_grupos" id="back-black">
+        <a href="dashboard.html">
+            <img src="../Img/img_roa/f_iqd.png" alt="Icono Atras" width="35px">
+        </a>
+    </div>
+    <div class="btn_atras_grupos" id="back-white">
+        <a href="dashboard.html">
+            <img src="../Img/f-izq-white.png" alt="Icono Atras" width="35px">
+        </a>
+    </div>
+
+</body>
+
+<script src="../Js/config.js"></script>
+
+</html>

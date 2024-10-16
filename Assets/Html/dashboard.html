@@ -1,0 +1,218 @@
+<!--
+    By Emanuel Roa
+-->
+    
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DashBoard Elysium</title>
+    <link rel="stylesheet" href="../Css/styledashboar.css">
+</head>
+<body>
+    <header>
+        <img src="../Img/logo_icono.jpeg" alt="" class="menu-logo" />
+        <nav id="Menu">
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#">Eventos</a></li>
+            <li><a href="./foro_user.html">Foros</a></li>
+            <li><a href="#" class="active">Plataforma LMS</a></li>
+          </ul>
+        </nav>
+        <div class="icono_menu">
+            <a href=""><img src="../Img/campana.png" alt="Icono Notificaciones"></a>
+            <a href="config.html"><img src="../Img/configuracion-del-usuario.png" alt="Icono Confi"></a>
+        </div>
+    </header>
+    <main style="padding-top: 100px;">
+        <aside class="sidebar">
+            <nav>
+              <ul>
+                <li><a href="#" class="active_micro"><img src="../Img/pagina-de-inicio (1).png" alt="icon_inicio" width="30px" height="30px">Inicio</a></li>
+                <hr>
+                <li><a href="./grupos.html"><img src="../Img/personas.png" alt="icon grupos" width="30px" height="30px">Grupos</a></li>
+              </ul>
+              <ul style="position: relative; top: 300px;">
+                <li><a href=""><img src="../Img/img_roa/cerrar_form_agenda.png" alt="Salir" width="30px" height="30px"></a></li>
+              </ul>
+            </nav>
+          </aside>
+          <br><br>
+        <section class="container_dashboard">
+            <h1></h1>
+            <div class="container_interno_dashboard">
+                <div class="container_dashboard1">
+                    <div class="link_agenda">
+                        <a href="agenda.html" style="text-decoration: none;">
+                            <h1 class="title1">Agenda<span class="title2"> Personal</span></h1>
+                        <img src="../Img/Notes-icon-dashboard.png" alt="Icono Agenda" width="250px">
+                        </a>
+                    </div>
+                    <div class="table_notificacion">
+                        <table>
+                            <thead>
+                                <div class="btn_contaner_micro">
+                                    <button class="btn_rapido">Materias</button>
+                                </div>
+                            </thead>
+                            <tbody>
+                                <tr class="micro_contenedor_asignaciones">
+                                    <td>
+                                        <div class="micro_contianer_dashboard_materias">
+                                            <img src="../Img/agendaicon.png" alt="icono_agenda" width="40px">
+                                            <h1>Matematicas</h1>
+                                        </div>
+                                    </td>
+                                    <br>
+                                    <td>
+                                        <div class="micro_contianer_dashboard_materias">
+                                            <img src="../Img/agendaicon.png" alt="icono_agenda" width="40px">
+                                            <h1>Soluciones WEB</h1>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <br>
+                        <br>
+                        <br>
+                        <a class="link_expandir2" href="materias.html">Expandir<img src="../Img/expandir_icon.png" alt="Icono Expandir"></a>
+                    </div>
+                    <div class="calendario">
+                        <div class="title_mes">
+                            <button class="btn_calen" onclick="cambiarMes(-1)"><img src="../Img/f_iqd.png" alt="Icono_Izq" width="20px"></button>
+                            <h3 id="mes"></h3>
+                            <button class="btn_calen" onclick="cambiarMes(1)"><img src="../Img/f_der.png" alt="Icono_Der" width="20px"></button>
+                        </div>
+                        <hr>
+                        <div class="dias">
+                            <div class="dia">Lun</div>
+                            <div class="dia">Mar</div>
+                            <div class="dia">Mié</div>
+                            <div class="dia">Jue</div>
+                            <div class="dia">Vie</div>
+                            <div class="dia">Sáb</div>
+                            <div class="dia">Dom</div>
+                        </div>
+                        <div class="fechas" id="fechas"></div>
+                    </div>
+                </div>
+                <br>
+                <div class="container_dashboard2">
+                    <div class="micro_container_daschboar2">
+                        <h1>Anuncios</h1>
+                        <img src="../Img/info_icon.png" alt="icono_informacion" width="60px">
+                        <p>Aún no tienes anuncios registrados</p>
+                    </div>
+                    <br>
+                    <div class="container_micro_mensajes">
+                        <div class="micro_contenedor_mensajes">
+                            <h1 class="title_mensaje">Mensajes</h1>
+                            <br>
+                            <br>
+                            <hr style="width: 95%;">
+                            <br>
+                            <td>
+                                <div class="mensaje_container">
+                                    <div class="micro_perfil_mensaje">
+                                        <img src="../Img/icon_usuario.png" alt="icono_agenda" width="40px" height="40px">
+                                        <h1>Emanuel Roa:</h1>
+                                    </div>
+                                    <br>
+                                    <div>
+                                        <p id="mensaje">Abel recuerda la tarea de Arte..</p>
+                                    </div>
+                                </div>
+                            </td>
+                            <br>
+                            <hr style="width: 95%;">
+                            <br>
+                            <td>
+                                <div class="mensaje_container">
+                                    <div class="micro_perfil_mensaje">
+                                        <img src="../Img/icon_usuario.png" alt="icono_agenda" width="40px" height="40px">
+                                        <h1>Francisco Vargas:</h1>
+                                    </div>
+                                    <br>
+                                    <div>
+                                        <p id="mensaje">Hola Abel, recuerda llevar mi cuaderno..</p>
+                                    </div>
+                                </div>
+                            </td>
+                            <br>
+                            <hr style="width: 95%;">
+                            <a class="link_expandir" href="#">Expandir<img src="../Img/expandir_icon.png" alt="Icono Expandir"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <footer>
+            <div>
+                <h1>© 2024 Elysium. Todos los derechos reservados</h1>
+            </div>
+            <img src="../Img/logo_icono.jpeg" alt="logo_footer" width="100px" height="30px">
+        </footer>
+    </main>
+
+    <script>
+        /*
+            By Emanuel Roa
+        */
+
+        /*
+            Calendario
+        */
+        const meses = [
+            'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
+            'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
+        ];
+
+        let fechaActual = new Date();
+
+        function Calendario() {
+            const mesAnio = document.getElementById('mes');
+            const fechas = document.getElementById('fechas');
+
+            const mes = fechaActual.getMonth();
+            const año = fechaActual.getFullYear();
+
+            if (!mesAnio || !fechas) {
+                console.log('Los elementos mes o fechas no existen en esta página.');
+                return;
+            }
+
+            mesAnio.textContent = `${meses[mes]} ${año}`;
+            fechas.innerHTML = ''; 
+
+            const primerDia = new Date(año, mes, 1).getDay();
+            const diasEnMes = new Date(año, mes + 1, 0).getDate();
+
+            for (let i = 0; i < (primerDia || 7) - 1; i++) {
+                fechas.innerHTML += `<div class="fecha"></div>`;
+            }
+
+            for (let dia = 1; dia <= diasEnMes; dia++) {
+                const diaDiv = document.createElement('div');
+                diaDiv.className = 'fecha';
+                diaDiv.textContent = dia;
+
+                diaDiv.addEventListener("click", () => {
+                    mostrarform();
+                });
+
+                fechas.appendChild(diaDiv);
+            }
+        }
+
+        function cambiarMes(incremento) {
+            fechaActual.setMonth(fechaActual.getMonth() + incremento);
+            Calendario();
+        }
+
+        Calendario();
+    </script>
+</body>
+</html>

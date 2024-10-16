@@ -1,0 +1,113 @@
+<!--
+    By Emanuel Roa
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agenda Estudiantil</title>
+    <link rel="stylesheet" href="../Css/style.css">
+</head>
+<body>
+    <header>
+        <img src="../img/logo_icono.jpeg" alt="" class="menu-logo" />
+        <nav id="Menu">
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#">Eventos</a></li>
+            <li><a href="#">Foros</a></li>
+            <li><a href="#" class="active">Plataforma LMS</a></li>
+          </ul>
+        </nav>
+        <button type="button">Iniciar Sesión</button>
+    </header>
+    <main>
+        <section>
+            <div class="container_agenda">
+                <div class="table_container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Tarea</th>
+                                <th>Inicialización</th>
+                                <th>Finalización</th>
+                                <th>Tarea</th>
+                                <th>Puntuación</th>
+                                <th>Calificación</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr onclick="modalentrega()">
+                                <th class="micro_container_descrip_tarea">
+                                    <img src="../Img/img_roa/archivo_form_agenda.png" alt="Icono Asignacion Clases" width="50px">
+                                    <div class="text_infomacion">
+                                        <h1>Sucesiones aritméticas</h1>
+                                        <p>Sucesiones</p>
+                                    </div>
+                                </th>
+                                <th class="text_asignatura">11/10/2024</th>
+                                <th class="text_asignatura">14/10/2024</th>
+                                <th class="text_asignatura" id="Tarea"></th>
+                                <th class="text_asignatura">None</th>
+                                <th class="text_asignatura">None</th>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="container_btn">
+                    <div class="contenedorbtn_styel_text">
+                        <h1 id="comunidad_curso">Matematicas</h1>
+                        <p>6toC Software</p>
+                    </div>
+                    <div>
+                        <a href="#" class="btn_a">
+                            <button class="btn" src="./html/programaragenda.html">
+                                <img src="../Img/img_roa/foro_grupo_tareas.png" alt="iconon_calendario" width="190px">
+                                <span>Foro</span>
+                            </button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="btn_atras_grupos">
+                <a href="../agenda.html">
+                    <img src="../Img/img_roa/flecha_atras_grupos.png" alt="Icono Atras" width="35px">
+                </a>
+            </div>
+        </section>
+        <div class="modal_entrega_de_asignacion" id="modal_entregar_tarea" style="display: none">
+            <div class="container_interno_asignacion">
+                <h1>Sucesiones aritméticas</h1>
+                <h2>Instrucciones</h2>
+                <div>
+                    <p>Para está tarea investigaremos la definición de una sucesión aritmética y una sucesión geométrica.Luego de leer sobre ambos tipos de sucesiones, realizar un comentario de lo que entendimos con nuestras palabras.</p>
+                    <br>
+                    <p>El comentario debe contener:
+                        <br>
+                        <ol>
+                            <li>La diferencia entre una sucesión aritmética y una geométrica.</li>
+                            <li>Un ejemplo de cada sucesión </li>
+                        </ol>
+                    </p>
+                </div>
+                <br>
+                <input type="file" id="file-input">
+                <br>
+                <br>
+                <div class="btn_grupos_agenda">
+                    <button><img src="../Img/img_roa/comprobado_form_agenda.png" alt="icono_subir_tarea" width="35px" onclick="valiMicroForm()"></button>
+                    <button><img src="../Img/img_roa/cerrar_form_agenda.png" alt="icono_subir_tarea" width="35px" onclick="ocultarentrega()"></button>
+                </div>
+            </div>
+        </div>
+        <div class="btn_atras_grupos">
+            <a href="materias.html">
+                <img src="../Img/img_roa/flecha_atras_grupos.png" alt="Icono Atras" width="35px">
+            </a>
+        </div>
+    </main>
+    <script src="../Js/code.js"></script>
+</body>
+</html>

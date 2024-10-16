@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agenda de Tareas</title>
+</head>
+<body>
+  <h1>Tareas en la Agenda</h1>
+  <ul id="agenda-list"></ul>
+  
+  <script>
+    const agendaList = document.getElementById("agenda-list");
+    const agenda = JSON.parse(localStorage.getItem("agenda")) || [];
+
+    if (agenda.length === 0) {
+      agendaList.innerHTML = "<p>No hay tareas en la agenda.</p>";
+    } else {
+      agenda.forEach((tarea, index) => {
+        const listItem = document.createElement("li");
+        listItem.innerHTML = `
+          <strong>${tarea.titulo}</strong> - ${tarea.descripcion} (Fecha: ${tarea.fechaEntrega})
+          <button onclick="verTarea(${index})">Ver Tarea</button>
+        `;
+        agendaList.appendChild(listItem);
+      });
+    }
+
+    function verTarea(index) {
+      const tarea = agenda[index];
+      localStorage.setItem("titulo", tarea.titulo);
+      localStorage.setItem("descripcion", tarea.descripcion);
+      localStorage.setItem("contenido", tarea.contenido);
+      localStorage.setItem("fechaEntrega", tarea.fechaEntrega);
+
+      window.location.href = "vista-previa.html"; // Redirigir a la página de vista previa
+    }
+  </script>
+</body>
+</html>

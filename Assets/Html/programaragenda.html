@@ -1,0 +1,143 @@
+<!--
+    By Emanuel Roa
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agenda Estudiantil</title>
+    <link rel="stylesheet" href="../Css/style.css">
+</head>
+<body>
+    <header>
+        <img src="../Img/img_roa/logo_icono.jpeg" alt="" class="menu-logo" />
+        <nav id="Menu">
+          <ul>
+            <li><a href="index.html" class="active">Home</a></li>
+            <li><a href="#">Eventos</a></li>
+            <li><a href="#">Foros</a></li>
+            <li><a href="#">Plataforma LMS</a></li>
+          </ul>
+        </nav>
+        <button type="button">Iniciar Sesión</button>
+    </header>
+    <main>
+        <section class="container_general">
+            <h1></h1>
+            <div class="container_agenda">
+                <div class="table_container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Fecha</th>
+                                <th>Nombre</th>
+                                <th>Descripción</th>
+                                <th>Estado</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td id="hora_agenda_personal"></td>
+                                <td id="nombre_agenda_personal"></td>
+                                <td id="descripcion_agenda_personal"></td>
+                                <td id="estado_agenda_personal"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="btn_agregar_contianer">
+                        <button type="button" id="btn_mos" class="btn_agregar" onclick="mostrarform()">
+                            <img src="../Img/img_roa//anadir.png" alt="iocno_gregar" width="10px">
+                        </button>
+                    </div>
+                </div>
+                <div class="container_btn">
+                    <div class="calendario">
+                        <div class="title_mes">
+                            <button class="btn_calen" onclick="cambiarMes(-1)"><img src="../img/f_iqd.png" alt="Icono_Izq" width="20px"></button>
+                            <h3 id="mes"></h3>
+                            <button class="btn_calen" onclick="cambiarMes(1)"><img src="../img/f_der.png" alt="Icono_Der" width="20px"></button>
+                        </div>
+                        <hr>
+                        <div class="dias">
+                            <div class="dia">Lun</div>
+                            <div class="dia">Mar</div>
+                            <div class="dia">Mié</div>
+                            <div class="dia">Jue</div>
+                            <div class="dia">Vie</div>
+                            <div class="dia">Sáb</div>
+                            <div class="dia">Dom</div>
+                        </div>
+                        <div class="fechas" id="fechas"></div>
+                    </div>
+                    <!--<div>
+                        <a href="../agenda.html" class="btn_a">
+                            <button class="btn">
+                                <img src="../img/icono_clases_agenda.png" alt="iconon_calendario" width="190px">
+                                <span>Recordatorio</span>
+                            </button>
+                        </a>
+                    </div>-->
+                </div>
+            </div>
+            <div class="btn_atras_grupos">
+                <a href="agenda.html">
+                    <img src="../Img/img_roa/flecha_atras_grupos.png" alt="Icono Atras" width="35px">
+                </a>
+            </div>
+            <br>
+            <div class="form_contianer_general" id="form_container_general" style="display: none;">
+                <div class="contianer_form">
+                    <form action="" class="form_agendar" id="form_agendar">
+                        <div class="title_fomr_agenda">
+                            <h1>Programar Agenda</h1>
+                            <img src="../Img/img_roa/logo_icono.jpeg" alt="logo_icon" style="width: 90px; height: 30px; padding: 5px;">
+                            <hr>
+                        </div>
+                        <div class="input_superior">
+                            <div class="input_content_s">
+                                <img src="../Img/img_roa/lapiz_form_agenda.png" alt="Icono Calendario" width="25px" height="25px">
+                                <input id="nombreAgenda" class="input_agendar" type="text" placeholder="Nombre la tarea..">
+                            </div>
+                            <p class="error" id="error_nombre_agenda"></p>
+                            <div class="input_content_s">
+                                <img src="../Img/img_roa/archivo_form_agenda.png" alt="Icono Calendario" width="25px" height="25px">
+                                <input id="descripcionAgenda" class="input_agendar" type="text" placeholder="Descripción de la tarea..">
+                            </div>  
+                            <p class="error" id="error_descripcion_agenda"></p>       
+                        </div>
+                        <div class="input_secundario">
+                            <div class="input_content_s">
+                                <img src="../Img/img_roa/calendario_form_agenda.png" alt="Icono Calendario" width="25px" height="25px">
+                                <input id="fechaAgenda" class="input_agendar" type="date">
+                            </div>
+                            <p class="error" id="error_fecha_agenda"></p>
+                            <div class="input_content_s">
+                                <img src="../Img/img_roa/usuario_form_agenda.png" alt="Icono Tarea" width="25px" height="25px">
+                                <select name="" id="estadoAgenda" class="input_agendar" aria-placeholder="Hola">
+                                    <option value="None">Estado de la Tarea..</option>
+                                    <option value="Pendiente">Pendiente</option>
+                                    <option value="Proceso">Proceso</option>
+                                    <option value="Completado">Completado</option>
+                                </select>
+                            </div>
+                            <p class="error" id="error_estado_agenda"></p>
+                        </div>
+                        <hr>
+                        <div class="container_btn_form">
+                            <button type="button" class="btn_listo" onclick="ocultarform()">
+                                <img src="../Img/img_roa/cerrar_form_agenda.png" alt="Icono Listo" width="30px">
+                            </button>
+                            <button type="button" class="btn_listo" onclick="validarFormulario()">
+                                <img src="../Img/img_roa/comprobado_form_agenda.png" alt="Icono Listo" width="30px">
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+    <script src="../Js/code.js"></script>
+</body>
+</html>

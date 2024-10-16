@@ -1,0 +1,509 @@
+/*
+    by Emanuel Roa
+*/
+
+@import url("https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&display=swap");
+* {
+    --primary_color: #0097dd;
+    --secundari_color: #daeffb;
+    --bagronud_color: #ffffff;
+    --white_color: #ffffff;
+
+
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #ffffff;
+}
+
+/*
+    Menu
+*/
+
+header {
+    z-index: 10;
+  display: flex;
+  position: fixed;
+  width: 100%;
+  background: white;
+  height: 78px;
+  left: 0;
+  top: 0;
+  justify-content: space-around;
+  align-items: center;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.359);
+}
+
+
+header img {
+  height: 30px;
+}
+
+header button {
+  right: 50px;
+  outline: none;
+  border: none;
+  box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.389);
+  border-radius: 5px;
+  padding: 10px 15px;
+  background: none;
+  transition: 0.2s linear;
+}
+
+header button:hover {
+  transform: translateY(-3px);
+  background: #38b6ff;
+  color: white;
+}
+
+header button:active {
+  transform: translateY(-1px);
+}
+
+header button::after {
+  content: "";
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+  border-radius: 100px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  transition: all 0.4s;
+}
+
+header button:hover::after {
+  transform: scaleX(1.4) scaleY(1.6);
+  opacity: 0;
+}
+
+header ul {
+  display: flex;
+  list-style: none;
+  align-self: center;
+  justify-self: center;
+  padding-inline-start: 0;
+  gap: 20px;
+}
+
+header ul .active {
+  color: #38b6ff;
+}
+
+header ul a {
+  color: #757575;
+  text-decoration: none;
+}
+
+header ul a:hover {
+  color: #38b6ff;
+  border-bottom: 2px solid #38b6ff;
+}
+
+.icono_menu{
+    display: flex;
+    gap: 15px;
+}
+
+/*
+    Menu Lateral
+*/
+.sidebar {
+   z-index: 1;
+   width: 60px;
+   background-color: var(--bagronud_color);
+   color: rgb(0, 0, 0);
+   height: 100%;
+   padding: 1rem;
+   position: fixed;
+   top: 80px;
+   left: 0;
+   box-shadow: 4px 0 8px rgba(0, 0, 0, 0.2); 
+}
+  
+.sidebar nav ul {
+   list-style: none;
+}
+  
+.sidebar nav ul li {
+   margin: 15px 0;
+}
+
+.sidebar nav ul li a {
+   color: black;
+   text-decoration: none;
+   font-size: 0.7rem;
+}
+  
+a.active_micro {
+   position: relative;
+   text-decoration: none;
+   color: inherit; 
+   padding-bottom: 5px; 
+}
+  
+a.active_micro::after {
+   content: "";
+   position: absolute;
+   bottom: 0;
+   left: 0;
+   width: 32px;
+   height: 3px; 
+   background-color: var(--primary_color); 
+}
+
+/*
+    Contendor Agenda
+*/
+.container_dashboard{
+    width: 100%;
+    height: 100%;
+    padding-left: 50px;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+.container_interno_dashboard{
+    display: grid;
+}
+
+/*
+    Container DashBoard
+*/
+.container_dashboard1{
+    display: flex;
+    gap: 30px;
+}
+
+/*
+    Link Agenda Personal
+*/
+.link_agenda{
+    background-color: white;
+    border: 1px solid var(--bagronud_color);
+    box-shadow: 3px 6px 9px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    width: 350px; 
+    height: 310px;
+    overflow: hidden;
+    text-align: center;
+}
+
+.link_agenda h1{
+    font-size: 25px;
+    color: #2e2e2e;
+    padding-top: 20px;
+}
+
+.link_agenda span{
+    font-size: 25px;
+    color: var(--primary_color);
+    padding-top: 20px;
+}
+
+/*
+    Micro recordatorio de Tarea y acesso a las tareas
+*/
+.table_notificacion{
+    background-color: white;
+    border: 1px solid var(--bagronud_color);
+    box-shadow: 3px 6px 9px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    width: 500px; 
+    height: 310px;
+    overflow: hidden;
+    text-align: center;
+}
+
+.micro_contenedor_asignaciones{
+    display: grid;
+}
+
+.btn_container_micro{
+    display: flex;
+    position: absolute;
+    left: 5px;
+    background-color: #0097dd;
+}
+
+.btn_rapido{
+    font-size: 23px;
+    padding: 20px;
+    background-color: transparent;
+    color: var(--primary_color);
+    border: solid 1px transparent;
+    border-radius: var(--bagronud_color);
+}
+
+table{
+    width: 500px;
+    padding-left: 15px; 
+}
+
+th, td {
+    padding: 12px 20px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.micro_asignaciones{
+    display: grid;
+    gap: 20px;
+}
+
+.micro_contianer_dashboard_materias{
+    display: flex;
+    gap: 20px;
+}
+
+.micro_contianer_dashboard_materias img{
+    background-color: var(--primary_color);
+    border: solid 1px var(--primary_color);
+    border-radius: 10px;
+    padding: 4px;
+}
+
+.micro_contianer_dashboard_materias h1{
+    font-size: 15px;
+    color: var(--primary_color);
+    text-align: center;
+}
+
+/*
+    Calendario
+*/
+
+.calendario {
+    background-color: white;
+    border: 1px solid var(--bagronud_color);
+    box-shadow: 3px 6px 9px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    width: 350px; 
+    height: 310px;
+    text-align: center;
+}
+
+.title_mes {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    background-color: var(--bagronud_color );
+    color: var(--primary_color);
+    padding: 11px;
+}
+
+.dias, .fechas {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+}
+
+.dia, .fecha {
+    font-size: 13px;
+    padding: 10px;
+    border: 1px solid transparent;
+}
+
+.fecha {
+    cursor: pointer;
+}
+
+.fecha:hover {
+    background-color: #f0f0f0;
+}
+
+.btn_calen{
+    background-color: transparent;
+    border:solid 1px transparent ;
+}
+
+/*
+    Anuncios  Micro
+*/
+.container_dashboard2{
+    display: flex;
+    gap: 15px;
+}
+
+.micro_container_daschboar2{
+    background-color: white;
+    border: 1px solid var(--bagronud_color);
+    box-shadow: 3px 6px 9px rgba(0, 0, 0, 0.223);
+    border-radius: 8px;
+    width: 730px; 
+    height: 330px;
+    text-align: center;
+    align-items: center;
+}
+
+.micro_container_daschboar2 h1{
+    font-size: 25px;
+    color: var(--primary_color);
+    padding: 30px;
+    margin-top: 30px;
+}
+
+.micro_container_daschboar2 img{
+    padding: 10px;
+}
+
+.micro_container_daschboar2 p{
+    font-size: 18px;
+    color: #2e2e2e;
+}
+
+/*
+    Micro Mensajes
+*/
+.container_micro_mensajes{
+    background-color: white;
+    border: 1px solid var(--bagronud_color);
+    box-shadow: 3px 6px 9px rgba(0, 0, 0, 0.223);
+    border-radius: 8px;
+    width: 500px; 
+    height: 330px;
+    text-align: center;
+    align-items: center;
+}
+
+.micro_contenedor_mensajes{
+    padding-left: 10px;
+}
+
+.title_mensaje{
+    font-size: 20px;
+    padding-top: 40px;
+    color: var(--primary_color);
+}
+
+.mensaje_container{
+    display: flex;
+    gap: 20px;
+}
+
+.micro_perfil_mensaje{
+    display: flex;
+    gap: 5px;
+}
+
+.micro_perfil_mensaje h1{
+    padding-top: 15px;
+    padding-left: 10px;
+    font-size: 13px;
+    color: var(--primary_color);
+    max-width: 150px;
+}
+
+.micro_perfil_mensaje img{
+    background-color: var(--primary_color);
+    border: solid 1px var(--primary_color);
+    border-radius: 10px;
+    padding: 4px;
+}
+
+#mensaje{
+    font-size: 13px;
+    color: #2e2e2e;
+    padding-top: 20px;
+    padding-left: 20px;
+}
+
+.link_expandir{
+    font-size: 16px;
+    position: absolute;
+    bottom: -130px;
+    right: 30px;
+    color: var(--primary_color);
+    text-decoration: none;
+}
+
+.link_expandir img{
+    width: 20px;
+    height: 20px;
+    padding: 4px;
+}
+
+.link_expandir2{
+    font-size: 16px;
+    color: var(--primary_color);
+    text-decoration: none;
+    margin-left: 400px;
+}
+
+.link_expandir2 img{
+    width: 20px;
+    height: 20px;
+    padding: 4px;
+}
+
+footer{
+    width: 100%;
+    max-width: 1200px;
+    position: relative;
+    left: 60px;
+    padding: 30px;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    gap: 50px;
+}
+
+footer h1{
+    color: var(--primary_color);
+    font-size: 15px;
+}
+
+/*
+    Grupos
+*/
+
+.container_grupo{
+    width: 100%;
+    max-width: 1100px;
+    display: grid;
+    gap: 20px;
+    align-items: center;
+    position: relative;
+    top: 10px;
+    left: 80px;
+    padding-top: 30px;
+}
+
+.container_banenr img{
+    width: 1250px;
+    border-radius: 20px;
+}
+
+.btn_inferior{
+    display: flex;
+    gap: 50px;
+}
+
+.btn_a{
+    text-decoration: none;
+}
+
+.btn{
+    width: 350px;
+    height: 200px;
+    color: var(--primary_color);
+    border: solid 2px var(--bagronud_color);
+    border-radius: 10px;
+    background: #ffffff;
+    box-shadow:  20px 20px 60px #d9d9d9,
+             -20px -20px 60px #ffffff;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    font-size: 20px;
+}
+
+.btn span{
+    position: relative;
+    top: 80px;
+}
