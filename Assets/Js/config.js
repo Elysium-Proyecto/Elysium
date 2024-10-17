@@ -97,11 +97,10 @@ const languageSelect = document.getElementById('language');
 // Objeto que contiene las traducciones
 const translations = {
     es: {
-        link1: 'Home',
+        link1: 'Inicio',
         link2: 'Eventos',
         link3: 'Foros',
         link4: 'Plataforma LMS',
-
         username: 'Nombre de usuario:',
         email: 'Correo:',
         id: 'Matricula:',
@@ -158,9 +157,11 @@ function translatePage() {
 
         document.getElementById('h-link').textContent = translations[selectedLanguage].link1;
 
-        document.getElementById('h-link2').textContent = translations[selectedLanguage].link2;
+        document.getElementById('h-link1').textContent = translations[selectedLanguage].link2;
 
-        document.getElementById('h-link3').textContent = translations[selectedLanguage].link3;
+        document.getElementById('h-link2').textContent = translations[selectedLanguage].link3;
+
+        document.getElementById('h-link3').textContent = translations[selectedLanguage].link4;
 
         // Guarda el idioma seleccionado en localStorage
         localStorage.setItem('language', selectedLanguage);
