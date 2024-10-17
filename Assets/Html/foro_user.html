@@ -1,80 +1,124 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Foro Estudiantil</title>
-    <link rel="icon" type="image/x-icon" href="../Img/logoico.ico">
-    <link rel="stylesheet" href="./Forouser/styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> 
+    <link rel="icon" type="image/x-icon" href="../Img/logoico.ico" />
+    <link rel="stylesheet" href="./Forouser/styles.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
     <script src="https://unpkg.com/lucide@latest"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-</head>
-<body>
+  </head>
+  <body>
     <header class="main-header">
-        <div class="logo">
-          <img src="./Forouser/img/logo.jpg" alt="" srcset="" width="100px" height="40px" />
-        </div>
-        <nav class="main-nav">
-          <a href="https://elysium-proyecto.github.io/Elysium/" class="nav-link">Home</a>
-          <a href="eventos.html" class="nav-link">Eventos</a>
-          <a href="../Foro/index.html" class="nav-link active" id="forumLink">Foro</a>
-          <a href="./dashboard.html" class="nav-link">Plataforma LMS</a>
-        </nav>
-      </header>
+      <div class="logo">
+        <img
+          src="./Forouser/img/logo.jpg"
+          alt=""
+          srcset=""
+          width="100px"
+          height=i class=" class="40px"
+        />
+      </div>
+      <nav class="main-nav">
+        <a href="https://elysium-proyecto.github.io/Elysium/" class="nav-link">Home</a>
+        <a href="eventos.html" class="nav-link">Eventos</a>
+        <a href="#" class="nav-link active" id="forumLink">Foro</a>
+        <a href="dashboard.html" class="nav-link">Plataforma LMS</a>
+      </nav>
+      <div class="user-actions">
+        <button id="notifications-btn">
+            <a href="#" ><img src="../Img/campana.png" alt="Icono Notificaciones"></a>
+          </i><span id="notification-count">0</span>
+        </button>
+           <a href="config.html" id="login-btn"><img src="../Img/configuracion-del-usuario.png" alt="Icono Confi"></a>
+      </div>
+    </header>
 
     <main>
       <div id="sidebar">
-    <nav id="main-nav">
-        <ul>
-            <li><a href="#" id="home-link" class="active"><i class="fas fa-home"></i> Inicio</a></li>
-            <li><a href="#" id="communities-link"><i class="fas fa-users"></i> Comunidades</a></li>
-            <li><a href="#" id="rules-link"><i class="fas fa-book"></i> Reglas</a></li>
-        </ul>
-    </nav>
-    <div id="communities-list"></div>
-    <div id="active-users">
-        <h3><i class="fas fa-user-circle"></i> Usuarios Activos</h3>
-        <ul id="active-users-list"></ul>
-    </div>
-    </div>
-        <section id="content">
-            <div id="posts-container"></div>
-            <form id="post-form" class="hidden">
-                <textarea id="post-content" placeholder="Escribe tu publicación aquí..."></textarea>
-                <input type="file" id="post-image" accept="image/*">
-                <button type="submit"><i class="fas fa-paper-plane"></i> Publicar</button>
-            </form>
-        </section>
+        <nav id="main-nav">
+          <ul>
+            <li>
+              <a href="#" id="home-link" class="active"
+                ><i class="fas fa-home"></i> Inicio</a
+              >
+            </li>
+            <li>
+              <a href="#" id="communities-link"
+                ><i class="fas fa-users"></i> Comunidades</a
+              >
+            </li>
+            <li>
+              <a href="#" id="rules-link"><i class="fas fa-book"></i> Reglas</a>
+            </li>
+          </ul>
+        </nav>
+        <div id="communities-list"></div>
+        <div id="active-users">
+          <h3><i class="fas fa-user-circle"></i> Usuarios Activos</h3>
+          <ul id="active-users-list"></ul>
+        </div>
+      </div>
+      <section id="content">
+        <div id="posts-container"></div>
+        <form id="post-form" class="hidden">
+          <textarea
+            id="post-content"
+            placeholder="Escribe tu publicación aquí..."
+          ></textarea>
+          <input type="file" id="post-image" accept="image/*" />
+          <button type="submit">
+            <i class="fas fa-paper-plane"></i> Publicar
+          </button>
+        </form>
+      </section>
     </main>
 
     <div id="login-modal" class="modal hidden">
-        <div class="modal-content">
-            <h2><i class="fas fa-user-lock"></i> Iniciar Sesión</h2>
-            <form id="login-form">
-                <input type="text" id="username" placeholder="Nombre de usuario" required>
-                <input type="password" id="password" placeholder="Contraseña" required>
-                <select id="user-role">
-                    <option value="teacher">Profesor</option>
-                    <option value="admin">Administrador</option>
-                </select>
-                <button type="submit"><i class="fas fa-sign-in-alt"></i> Entrar</button>
-            </form>
-        </div>
-    </div>
-
-    <div id="notifications-modal" class="modal hidden">
-        <div class="modal-content">
-            <h2><i class="fas fa-bell"></i> Notificaciones</h2>
-            <ul id="notifications-list"></ul>
-        </div>
-    </div>
-    <div class="btn_atras_grupos">
-        <a href="./dashboard.html">
-            <img src="./Forouser/img/f_iqd.png" alt="Icono Atras" width="35px">
-        </a>
+      <div class="modal-content">
+        <h2><i class="fas fa-user-lock"></i> Iniciar Sesión</h2>
+        <form id="login-form">
+          <input
+            type="text"
+            id="username"
+            placeholder="Nombre de usuario"
+            required
+          />
+          <input
+            type="password"
+            id="password"
+            placeholder="Contraseña"
+            required
+          />
+          <button type="submit">
+            <i class="fas fa-sign-in-alt"></i> Entrar
+          </button>
+        </form>
       </div>
-    <script src="./Forouser/script.js"></script>
-</body>
+    </div>
+   <div id="notifications-modal" class="modal hidden">
+  <div class="modal_content_noti">
+    <button class="close-btn">&times;</button>
+    <h2><i class="fas fa-bell"></i> Notificaciones</h2>
+    <ul id="notifications-list"></ul>
+  </div>
+</div>
+
+
+    <div class="btn_atras_grupos">
+      <a href="./dashboard.html">
+        <img src="./Forouser/img/f_iqd.png" alt="Icono Atras" width="35px" />
+      </a>
+    </div>
+    <script src="Forouser/script.js"></script>
+  </body>
 </html>

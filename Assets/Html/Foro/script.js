@@ -3,6 +3,7 @@
 // Variables globales
 let currentUser = null;
 let currentCommunity = null;
+
 const communities = [
   {
     id: 1,
@@ -49,7 +50,6 @@ const notificationsModal = document.getElementById("notifications-modal");
 const notificationsList = document.getElementById("notifications-list");
 const notificationCount = document.getElementById("notification-count");
 const activeUsersList = document.getElementById("active-users-list");
-
 // Funciones de inicialización
 function init() {
   renderCommunities();
@@ -57,7 +57,6 @@ function init() {
   loadNotifications();
   renderActiveUsers();
   showHomePage();
-  
 }
 
 function setupEventListeners() {
@@ -128,6 +127,8 @@ function renderPosts() {
                     ? `<img src="${post.image}" class="post-image" alt="Imagen adjunta">`
                     : ""
                 }
+               
+                    
                 <div class="post-actions">
                     <button onclick="showCommentForm(${
                       post.id
@@ -139,9 +140,19 @@ function renderPosts() {
                           post.role !== "admin"))
                         ? `<button onclick="deletePost(${post.id})"><i class="fas fa-trash"></i> Eliminar</button>`
                         : ""
+                    }<button onclick="reportPost(${
+              post.id
+            })"><i class="fas fa-flag"></i> Reportar</button>
+                    ${
+                      currentUser && currentUser.username === post.author
+                        ? `<button onclick="showEditPostForm(${post.id})"><i class="fas fa-edit"></i> Editar</button>`
+                        : ""
                     }
                     ${
-                      currentUser && currentUser.role === "admin"
+                      currentUser &&
+                      (currentUser.role === "admin" ||
+                        (currentUser.role === "teacher" &&
+                          post.role !== "admin"))
                         ? `<button onclick="pinPost(${
                             post.id
                           })"><i class="fas fa-thumbtack"></i> ${
@@ -334,7 +345,12 @@ function closeNotification(id) {
   notifications = notifications.filter((notif) => notif.id !== id);
   updateNotifications();
 }
+const modal = document.getElementById("notifications-modal");
+const closeBtn = document.querySelector(".close-btn");
 
+closeBtn.addEventListener("click", function () {
+  modal.classList.add("hidden");
+});
 function updateActiveUsers(username, role) {
   const existingUserIndex = activeUsers.findIndex(
     (user) => user.name === username
@@ -368,11 +384,9 @@ function updateUIForRole(role) {
   }
 }
 
-
-
 function showHomePage() {
-    const postsContainer = document.getElementById('posts-container');
-    postsContainer.innerHTML = `
+  const postsContainer = document.getElementById("posts-container");
+  postsContainer.innerHTML = `
         <div class="Mensaje-de-bienvenida">
             <h2>Bienvenido al Foro Estudiantil de Elysium</h2>
             <p>Un espacio para el intercambio de ideas y conocimientos.</p>
@@ -380,8 +394,6 @@ function showHomePage() {
         </div>
     `;
 }
-
-
 
 function showCommunitiesPage(e) {
   e.preventDefault();
@@ -462,6 +474,72 @@ function showRulesPage(e) {
     `;
 }
 
+function showEditRulesForm() {
+  // Implementar formulario para editar reglas (solo para administradores y profesores)
+}
+// reportes
+
+function reportPost(postId) {
+  if (!currentUser) {
+    alert("Debes iniciar sesión para reportar una publicación.");
+    return;
+  }
+  alert("Has reportado exitosamente la publicación.");
+
+  addToModerationQueue(postId, "post");
+}
+
+function reportComment(commentId) {
+  if (!currentUser) {
+    alert("Debes iniciar sesión para reportar un comentario.");
+    return;
+  }
+  alert("Has reportado exitosamente el comentario.");
+  addToModerationQueue(commentId, "comment");
+}
+
+function showEditPostForm(postId) {
+  const post = posts[currentCommunity].find((p) => p.id === postId);
+  if (!post) return;
+
+  const editForm = `
+    <form id="edit-post-form-${postId}" class="edit-post-form">
+      <textarea id="edit-post-content-${postId}">${post.content}</textarea>
+      <button type="submit">Guardar cambios</button>
+      <button type="button" onclick="cancelEditPost(${postId})">Cancelar</button>
+    </form>
+  `;
+
+  const postElement = document.querySelector(
+    `.post:has(button[onclick="showEditPostForm(${postId})"])`
+  );
+  postElement.innerHTML += editForm;
+
+  document
+    .getElementById(`edit-post-form-${postId}`)
+    .addEventListener("submit", (e) => {
+      e.preventDefault();
+      const newContent = document.getElementById(
+        `edit-post-content-${postId}`
+      ).value;
+      editPost(postId, newContent);
+    });
+}
+
+function editPost(postId, newContent) {
+  const post = posts[currentCommunity].find((p) => p.id === postId);
+  if (post) {
+    post.content = newContent;
+    renderPosts();
+  }
+}
+
+function cancelEditPost(postId) {
+  const editForm = document.getElementById(`edit-post-form-${postId}`);
+  if (editForm) {
+    editForm.remove();
+  }
+}
 
 // Inicialización de la aplicación
 init();

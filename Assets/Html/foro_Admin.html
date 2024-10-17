@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Foro Estudiantil Admin</title>
-    <link rel="icon" type="image/x-icon" href="../Img/logoico.ico">
+    <title>Foro Estudiantil Avanzado</title>
     <link rel="stylesheet" href="./Foro/styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="../Img/logoico.ico" />
 
     <script src="https://kit.fontawesome.com/your-fontawesome-kit.js" crossorigin="anonymous"></script>
 </head>
@@ -16,17 +16,19 @@
         <img src="./DashboarInicio/img/logo.jpg" alt="Logo" class="menu-logo" />
         <nav id="Menu">
             <ul>
-                <li><a href="https://elysium-proyecto.github.io/Elysium/">Home</a></li>
-                <li><a href="programar_Eventos.html">Eventos</a></li>
-                <li><a href="foro_Admin.html" class="active">Foro</a></li>
-                <li><a href="DashBoard-Admin.html">Plataforma LMS</a></li>
+                <a href="https://elysium-proyecto.github.io/Elysium/" class="nav-link">Inicio</a>
+                <a href="programar_Eventos.html" class="nav-link">Eventos</a>
+                <a href="#" class="nav-link active" id="forumLink">Foro</a>
+                <a href="DashBoard-Admin.html" class="nav-link">Plataforma LMS</a>
             </ul>
         </nav>
         <div class="user-actions">
             <button id="notifications-btn"><i class="fas fa-bell"></i><span id="notification-count">0</span></button>
+                
             <button id="login-btn">Iniciar Sesión</button>
         </div>
     </header>
+
 
     <main>
       <div id="sidebar">
@@ -63,18 +65,19 @@
                     <option value="teacher">Profesor</option>
                     <option value="admin">Administrador</option>
                 </select>
-                <button type="submit"><i class="fas fa-sign-in-alt"></i> Entrar</button>
+                <button type="submit" class="e"><i class="fas fa-sign-in-alt"></i> Entrar</button>
             </form>
         </div>
     </div>
 
     <div id="notifications-modal" class="modal hidden">
         <div class="modal-content">
+            <button class="close-btn">&times;</button>
             <h2><i class="fas fa-bell"></i> Notificaciones</h2>
             <ul id="notifications-list"></ul>
         </div>
     </div>
 
-    <script src="./Foro/script.js"></script>
+     <script src="./Foro/script.js"></script>
 </body>
 </html>

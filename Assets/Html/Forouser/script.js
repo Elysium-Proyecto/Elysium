@@ -32,11 +32,9 @@ const communities = [
 let posts = {};
 let notifications = [];
 let activeUsers = [
-  { id: 1, name: "Ana", role: "student", status: "online" },
-  { id: 2, name: "Prof. Martínez", role: "teacher", status: "online" },
-  { id: 3, name: "Carlos", role: "admin", status: "away" },
+  { id: 1, name: "Ana", role: "estudiante", status: "online" },
+  { id: 2, name: "Carlos", role: "Estudiante", status: "away" },
 ];
-
 // Elementos del DOM
 const communitiesList = document.getElementById("communities-list");
 const postsContainer = document.getElementById("posts-container");
@@ -49,7 +47,6 @@ const notificationsModal = document.getElementById("notifications-modal");
 const notificationsList = document.getElementById("notifications-list");
 const notificationCount = document.getElementById("notification-count");
 const activeUsersList = document.getElementById("active-users-list");
-
 // Funciones de inicialización
 function init() {
   renderCommunities();
@@ -57,9 +54,7 @@ function init() {
   loadNotifications();
   renderActiveUsers();
   showHomePage();
-  
 }
-
 function setupEventListeners() {
   loginBtn.addEventListener("click", toggleLoginModal);
   loginForm.addEventListener("submit", handleLogin);
@@ -73,7 +68,6 @@ function setupEventListeners() {
     .getElementById("rules-link")
     .addEventListener("click", showRulesPage);
 }
-
 // Funciones de renderizado
 function renderCommunities() {
   communitiesList.innerHTML = communities
@@ -87,7 +81,6 @@ function renderCommunities() {
         </li>`
     )
     .join("");
-
   communitiesList.addEventListener("click", (e) => {
     if (e.target.tagName === "A") {
       e.preventDefault();
@@ -96,10 +89,8 @@ function renderCommunities() {
     }
   });
 }
-
 function renderPosts() {
   if (!currentCommunity) return;
-
   const communityPosts = posts[currentCommunity] || [];
   postsContainer.innerHTML = `
         <h2>${communities.find((c) => c.id === currentCommunity).name}</h2>
@@ -132,21 +123,12 @@ function renderPosts() {
                     <button onclick="showCommentForm(${
                       post.id
                     })"><i class="fas fa-comment"></i> Comentar</button>
+                    <button onclick="reportPost(${
+                      post.id
+                    })"><i class="fas fa-flag"></i> Reportar</button>
                     ${
-                      currentUser &&
-                      (currentUser.role === "admin" ||
-                        (currentUser.role === "teacher" &&
-                          post.role !== "admin"))
-                        ? `<button onclick="deletePost(${post.id})"><i class="fas fa-trash"></i> Eliminar</button>`
-                        : ""
-                    }
-                    ${
-                      currentUser && currentUser.role === "admin"
-                        ? `<button onclick="pinPost(${
-                            post.id
-                          })"><i class="fas fa-thumbtack"></i> ${
-                            post.pinned ? "Desfijar" : "Fijar"
-                          }</button>`
+                      currentUser && currentUser.username === post.author
+                        ? `<button onclick="showEditPostForm(${post.id})"><i class="fas fa-edit"></i> Editar</button>`
                         : ""
                     }
                 </div>
@@ -162,22 +144,20 @@ function renderPosts() {
           )
           .join("")}
     `;
-
   setupCommentForms();
 }
-
 function renderComments(comments) {
   return comments
     .map(
       (comment) => `
         <div class="comment">
             <strong>${comment.author} <span class="user-tag ${comment.role}-tag">${comment.role}</span>:</strong> ${comment.content}
+            <button onclick="reportComment(${comment.id})" class="report-btn"><i class="fas fa-flag"></i> Reportar</button>
         </div>
     `
     )
     .join("");
 }
-
 function renderActiveUsers() {
   activeUsersList.innerHTML = activeUsers
     .map(
@@ -191,33 +171,25 @@ function renderActiveUsers() {
     )
     .join("");
 }
-
 // Funciones de manejo de eventos
 function handleLogin(e) {
   e.preventDefault();
   const username = document.getElementById("username").value;
   const password = document.getElementById("password").value;
-  const role = document.getElementById("user-role").value;
-
-  // roles
-  currentUser = { username, role };
-  loginBtn.innerHTML = `<i class="fas fa-sign-out-alt"></i> Cerrar Sesión (${username})`;
+  currentUser = { username, role: "estudiante" };
+  loginBtn.innerHTML = `<i class="fas fa-sign-out-alt"></i>Cerrar Sesión (${username})`;
   toggleLoginModal();
   postForm.classList.remove("hidden");
-  updateActiveUsers(username, role);
-  updateUIForRole(role);
+  updateActiveUsers(username, "estudiante");
 }
-
 function handlePostSubmit(e) {
   e.preventDefault();
   if (!currentUser || !currentCommunity) return;
-
   const content = document.getElementById("post-content").value;
   const imageInput = document.getElementById("post-image");
   const image = imageInput.files[0]
     ? URL.createObjectURL(imageInput.files[0])
     : null;
-
   const newPost = {
     id: Date.now(),
     author: currentUser.username,
@@ -226,44 +198,36 @@ function handlePostSubmit(e) {
     image,
     timestamp: Date.now(),
     comments: [],
-    pinned: false,
   };
-
   if (!posts[currentCommunity]) {
     posts[currentCommunity] = [];
   }
   posts[currentCommunity].unshift(newPost);
-
   renderPosts();
   postForm.reset();
 }
-
 function selectCommunity(communityId) {
   currentCommunity = communityId;
   renderPosts();
 }
-
 function showCommentForm(postId) {
   const form = document.getElementById(`comment-form-${postId}`);
   form.classList.toggle("hidden");
 }
-
 function setupCommentForms() {
   document.querySelectorAll(".comment-form").forEach((form) => {
     form.addEventListener("submit", handleCommentSubmit);
   });
 }
-
 function handleCommentSubmit(e) {
   e.preventDefault();
   if (!currentUser) return;
-
   const postId = parseInt(e.target.id.split("-")[2]);
   const content = e.target.querySelector("textarea").value;
-
   const post = posts[currentCommunity].find((p) => p.id === postId);
   if (post) {
     post.comments.push({
+      id: Date.now(),
       author: currentUser.username,
       role: currentUser.role,
       content,
@@ -271,43 +235,14 @@ function handleCommentSubmit(e) {
     renderPosts();
   }
 }
-
-function deletePost(postId) {
-  if (
-    currentUser &&
-    (currentUser.role === "admin" || currentUser.role === "teacher")
-  ) {
-    posts[currentCommunity] = posts[currentCommunity].filter(
-      (post) => post.id !== postId
-    );
-    renderPosts();
-  }
-}
-
-function pinPost(postId) {
-  if (currentUser && currentUser.role === "admin") {
-    const post = posts[currentCommunity].find((p) => p.id === postId);
-    if (post) {
-      post.pinned = !post.pinned;
-      posts[currentCommunity].sort(
-        (a, b) => (b.pinned ? 1 : 0) - (a.pinned ? 1 : 0)
-      );
-      renderPosts();
-    }
-  }
-}
-
 // Funciones de utilidad
 function toggleLoginModal() {
   loginModal.classList.toggle("hidden");
 }
-
 function toggleNotificationsModal() {
   notificationsModal.classList.toggle("hidden");
 }
-
 function loadNotifications() {
-  // Simulación de carga de notificaciones desde una API
   setTimeout(() => {
     notifications = [
       { id: 1, message: "Nuevo comentario en tu publicación" },
@@ -316,7 +251,6 @@ function loadNotifications() {
     updateNotifications();
   }, 1000);
 }
-
 function updateNotifications() {
   notificationCount.textContent = notifications.length;
   notificationsList.innerHTML = notifications
@@ -329,11 +263,16 @@ function updateNotifications() {
     )
     .join("");
 }
-
 function closeNotification(id) {
   notifications = notifications.filter((notif) => notif.id !== id);
   updateNotifications();
 }
+const modal = document.getElementById("notifications-modal");
+const closeBtn = document.querySelector(".close-btn");
+
+closeBtn.addEventListener("click", function () {
+  modal.classList.add("hidden");
+});
 
 function updateActiveUsers(username, role) {
   const existingUserIndex = activeUsers.findIndex(
@@ -351,28 +290,9 @@ function updateActiveUsers(username, role) {
   }
   renderActiveUsers();
 }
-
-function updateUIForRole(role) {
-  const adminActions = document.querySelectorAll(".admin-action");
-  const teacherActions = document.querySelectorAll(".teacher-action");
-
-  if (role === "admin") {
-    adminActions.forEach((el) => el.classList.remove("hidden"));
-    teacherActions.forEach((el) => el.classList.remove("hidden"));
-  } else if (role === "teacher") {
-    adminActions.forEach((el) => el.classList.add("hidden"));
-    teacherActions.forEach((el) => el.classList.remove("hidden"));
-  } else {
-    adminActions.forEach((el) => el.classList.add("hidden"));
-    teacherActions.forEach((el) => el.classList.add("hidden"));
-  }
-}
-
-
-
 function showHomePage() {
-    const postsContainer = document.getElementById('posts-container');
-    postsContainer.innerHTML = `
+  const postsContainer = document.getElementById("posts-container");
+  postsContainer.innerHTML = `
         <div class="Mensaje-de-bienvenida">
             <h2>Bienvenido al Foro Estudiantil de Elysium</h2>
             <p>Un espacio para el intercambio de ideas y conocimientos.</p>
@@ -380,9 +300,6 @@ function showHomePage() {
         </div>
     `;
 }
-
-
-
 function showCommunitiesPage(e) {
   e.preventDefault();
   postsContainer.innerHTML = `
@@ -402,43 +319,8 @@ function showCommunitiesPage(e) {
               )
               .join("")}
         </div>
-        ${
-          currentUser && currentUser.role === "admin"
-            ? `<button onclick="showCreateCommunityForm()" class="admin-action"><i class="fas fa-plus"></i> Crear Nueva Comunidad</button>`
-            : ""
-        }
     `;
 }
-
-function showCreateCommunityForm() {
-  postsContainer.innerHTML += `
-        <div id="create-community-form" class="modal">
-            <div class="modal-content">
-                <h3>Crear Nueva Comunidad</h3>
-                <form onsubmit="createCommunity(event)">
-                    <input type="text" id="community-name" placeholder="Nombre de la comunidad" required>
-                    <input type="url" id="community-image" placeholder="URL de la imagen de la comunidad" required>
-                    <button type="submit">Crear Comunidad</button>
-                </form>
-            </div>
-        </div>
-    `;
-}
-
-function createCommunity(event) {
-  event.preventDefault();
-  const name = document.getElementById("community-name").value;
-  const image = document.getElementById("community-image").value;
-  const newCommunity = {
-    id: communities.length + 1,
-    name,
-    image,
-  };
-  communities.push(newCommunity);
-  renderCommunities();
-  showCommunitiesPage(event);
-}
-
 function showRulesPage(e) {
   e.preventDefault();
   postsContainer.innerHTML = `
@@ -448,23 +330,76 @@ function showRulesPage(e) {
             <li>Respeto mutuo: Trata a todos los miembros con cortesía y consideración.</li>
             <li>Contenido apropiado: Mantén las discusiones relacionadas con temas académicos y educativos.</li>
             <li>Propiedad intelectual: Respeta los derechos de autor y cita tus fuentes adecuadamente.</li>
-            <li>No al plagio: Presenta tu propio trabajo y ideas originales.</li>
+            <li>No al plagio: Presenta tu propio trabajo e ideas originales.</li>
             <li>Privacidad: No compartas información personal de otros sin su consentimiento.</li>
             <li>Debate constructivo: Fomenta el diálogo respetuoso y el intercambio de ideas.</li>
             <li>Reporta problemas: Informa a los moderadores sobre contenido inapropiado o violaciones de las reglas.</li>
         </ol>
-        ${
-          currentUser &&
-          (currentUser.role === "admin" || currentUser.role === "teacher")
-            ? `<button onclick="showEditRulesForm()" class="teacher-action"><i class="fas fa-edit"></i> Editar Reglas</button>`
-            : ""
-        }
     `;
 }
 
-function showEditRulesForm() {
-  // Implementar formulario para editar reglas (solo para administradores y profesores)
+// reportes
+
+function reportPost(postId) {
+  if (!currentUser) {
+    alert("Debes iniciar sesión para reportar una publicación.");
+    return;
+  }
+  alert("Has reportado exitosamente la publicación.");
+
+  addToModerationQueue(postId, "post");
 }
 
-// Inicialización de la aplicación
+function reportComment(commentId) {
+  if (!currentUser) {
+    alert("Debes iniciar sesión para reportar un comentario.");
+    return;
+  }
+  alert("Has reportado exitosamente el comentario.");
+  addToModerationQueue(commentId, "comment");
+}
+
+function showEditPostForm(postId) {
+  const post = posts[currentCommunity].find((p) => p.id === postId);
+  if (!post) return;
+
+  const editForm = `
+    <form id="edit-post-form-${postId}" class="edit-post-form">
+      <textarea id="edit-post-content-${postId}">${post.content}</textarea>
+      <button type="submit">Guardar cambios</button>
+      <button type="button" onclick="cancelEditPost(${postId})">Cancelar</button>
+    </form>
+  `;
+
+  const postElement = document.querySelector(
+    `.post:has(button[onclick="showEditPostForm(${postId})"])`
+  );
+  postElement.innerHTML += editForm;
+
+  document
+    .getElementById(`edit-post-form-${postId}`)
+    .addEventListener("submit", (e) => {
+      e.preventDefault();
+      const newContent = document.getElementById(
+        `edit-post-content-${postId}`
+      ).value;
+      editPost(postId, newContent);
+    });
+}
+
+function editPost(postId, newContent) {
+  const post = posts[currentCommunity].find((p) => p.id === postId);
+  if (post) {
+    post.content = newContent;
+    renderPosts();
+  }
+}
+
+function cancelEditPost(postId) {
+  const editForm = document.getElementById(`edit-post-form-${postId}`);
+  if (editForm) {
+    editForm.remove();
+  }
+}
+
 init();

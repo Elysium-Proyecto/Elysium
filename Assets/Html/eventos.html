@@ -1,4 +1,3 @@
-<!-- @format -->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -6,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Eventos</title>
-    <link rel="icon" type="image/x-icon" href="../Img/logoico.ico">
+    <link rel="icon" type="image/x-icon" href="../Img/logoico.ico" />
     <link rel="stylesheet" href="../Css/styleevento.css" />
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
@@ -16,8 +15,10 @@
       <img src="../Img/logo_icono.jpeg" alt="" class="menu-logo" />
       <nav id="Menu">
         <ul>
-          <li><a href="https://elysium-proyecto.github.io/Elysium/">Home</a></li>
-          <li><a href="#"class="active">Eventos</a></li>
+          <li>
+            <a href="https://elysium-proyecto.github.io/Elysium/">Home</a>
+          </li>
+          <li><a href="#" class="active">Eventos</a></li>
           <li><a href="foro_user.html">Foros</a></li>
           <li><a href="dashboard.html">Plataforma LMS</a></li>
         </ul>
@@ -28,31 +29,99 @@
         <span class="label">Iniciar Sesión</span>
       </button>
     </header>
-    <br>
-    <br>
-    <br>
-    <section class="eventos-container">
-        <div class="evento">
-          <img src="../Img/evento.jpg" alt="Evento 1">
-          <h2>Evento 1</h2>
-          <p>Descripción breve del evento 1. Este evento será increíble.</p>
+    <main>
+      <section id="carousel">
+        <div class="carousel-container">
+          <div class="carousel-slide">
+            <img
+              src="https://live.staticflickr.com/65535/48724236108_817ca415c0_b.jpg"
+              alt="Congreso de Investigación"
+            />
+            <div class="carousel-caption">
+              <h2>Lorem ipsum dolor sit amet.</h2>
+              <p>12 de abril, 2024</p>
+            </div>
+          </div>
+          <div class="carousel-slide">
+            <img
+              src="https://resources.diariolibre.com/images/binrepository/edificacion_12215279_20190912173848-focus-0-0-375-240.jpg"
+              alt="Seminario de Innovación Educativa"
+            />
+            <div class="carousel-caption">
+              <h2>Lorem ipsum dolor sit amet.</h2>
+              <p>23 de mayo, 2024</p>
+            </div>
+          </div>
+          <div class="carousel-slide">
+            <img
+              src="https://zoodom.gob.do/wp-content/uploads/2022/10/logm.jpg"
+              alt="Taller de Liderazgo Estudiantil"
+            />
+            <div class="carousel-caption">
+              <h2>Lorem ipsum dolor sit amet.</h2>
+              <p>5 de junio, 2024</p>
+            </div>
+          </div>
         </div>
-    
-        <div class="evento">
-          <img src="../Img/itla_evento.jpeg" alt="Evento 2">
-          <h2>Evento 2</h2>
-          <p>Descripción breve del evento 2. ¡No te lo puedes perder!</p>
-        </div>
-    
-        <div class="evento">
-          <img src="../Img/img_banner_curso.jpg" alt="Evento 3">
-          <h2>Evento 3</h2>
-          <p>Descripción breve del evento 3. Ven y disfruta con nosotros.</p>
+        <button class="carousel-button prev">&lt;</button>
+        <button class="carousel-button next">&gt;</button>
+      </section>
+
+      <section id="events-list">
+        <div class="container">
+          <h2>Próximos Eventos</h2>
+          <div class="events-grid">
+            <div class="event-card">
+              <img
+                src="https://images.unsplash.com/photo-1580974852861-c381510bc98a?q=80&w=1984&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                alt="Taller de Desarrollo Profesional"
+              />
+              <h3>Taller de Desarrollo Profesional</h3>
+              <p><strong>Fecha:</strong> 18 de marzo, 2024</p>
+              <p><strong>Hora:</strong> 11:00 AM</p>
+              <p><strong>Lugar:</strong> Sala 204, Centro de Carreras</p>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Vestibulum vehicula euismod nisl, quis facilisis velit vehicula
+                id.
+              </p>
+              <button>Regístrate Ahora</button>
+            </div>
+            <div class="event-card">
+              <img
+                src="https://images.unsplash.com/photo-1580974852861-c381510bc98a?q=80&w=1984&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                alt="Feria de Servicio Comunitario"
+              />
+              <h3>Feria de Servicio Comunitario</h3>
+              <p><strong>Fecha:</strong> 10 de abril, 2024</p>
+              <p><strong>Hora:</strong> 09:30 AM</p>
+              <p><strong>Lugar:</strong> Plaza del Campus</p>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
+                viverra cursus nunc, sit amet finibus est convallis ac.
+              </p>
+              <button>Más Información</button>
+            </div>
+            <div class="event-card">
+              <img
+                src="https://images.unsplash.com/photo-1580974852861-c381510bc98a?q=80&w=1984&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                alt="Encuentro de Estudiantes Internacionales"
+              />
+              <h3>La gran depresion esclava</h3>
+              <p><strong>Fecha:</strong> 5 de mayo, 2024</p>
+              <p><strong>Hora:</strong> 04:00 PM</p>
+              <p><strong>Lugar:</strong> Salón de Estudiantes</p>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Curabitur fringilla, enim nec volutpat ultricies, enim libero
+                faucibus metus.
+              </p>
+              <button>Únete a Nosotros</button>
+            </div>
+          </div>
         </div>
       </section>
-    <br>
-    <br>
-    <br>
+    </main>
 
     <div id="Partners">
       <h1 class="heading">Nuestros <span>Patrocinadores:</span></h1>
@@ -63,17 +132,19 @@
         <img src="../Img/Trashcicle.png" alt="" />
       </section>
     </div>
-    <br>
-    <br>
-    <br>
-     <br>
+    <br />
+    <br />
+    <br />
+    <br />
     <footer class="footer">
       <div class="contai">
         <div class="row">
           <div class="footer-col">
             <h4>Link</h4>
             <ul>
-              <li><a href="https://elysium-proyecto.github.io/Elysium/">Inicio</a></li>
+              <li>
+                <a href="https://elysium-proyecto.github.io/Elysium/">Inicio</a>
+              </li>
               <li><a href="#">Eventos</a></li>
               <li><a href="foro_user.html">Foro</a></li>
               <li><a href="dashboard.html">Plataforma LMS</a></li>
@@ -95,12 +166,12 @@
             </ul>
           </div>
         </div>
-        <hr>
-        <p style="color: #fff;">© 2024 Elysium. Todos los derechos reservados</p>
+        <hr />
+        <p style="color: #fff">© 2024 Elysium. Todos los derechos reservados</p>
       </div>
-   </footer>
+    </footer>
   </body>
-  <script src="script.js"></script>
+   <script src="../Js/evento_user.js"></script>
   <script>
     AOS.init();
   </script>
