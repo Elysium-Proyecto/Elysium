@@ -22,6 +22,17 @@ html body .heading span {
   font-weight: 700;
 }
 
+body.dark-mode{
+  font-family: "Exo", sans-serif;
+  color: #191919;
+  padding-top: 76px;
+  margin: 0;
+  box-sizing: border-box;
+  height: 700px;
+  background-color: #222222;
+  color: #ffffff;
+}
+
 .classic-button {
   width: 50%;
   outline: none;
@@ -66,6 +77,21 @@ header {
   align-items: center;
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.359);
 }
+
+header.dark-mode{
+  display: flex;
+  position: fixed;
+  width: 100%;
+  background: #2A2A2A;
+  height: 78px;
+  left: 0;
+  top: 0;
+  justify-content: space-around;
+  align-items: center;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.359);
+  z-index: 3;
+}
+
 header img {
   height: 30px;
 }
@@ -152,6 +178,28 @@ header ul a {
   text-decoration: none;
   transition: transform 0.4s ease-in-out;
 }
+
+#link1.dark-mode{
+  color: #b8b8b8;
+}
+
+#link2.dark-mode{
+  color: #b8b8b8;
+}
+
+#link3.dark-mode{
+  color: #b8b8b8;
+}
+
+#link4.dark-mode{
+  color: #b8b8b8;
+}
+
+#link1.dark-mode:hover,#link2.dark-mode:hover,#link3.dark-mode:hover,#link4.dark-mode:hover{
+  color: #ffffff;
+}
+
+
 
 #Intro {
   height: 35em;
@@ -323,6 +371,12 @@ header ul a {
   height: 25em;
 }
 
+/* oscuro text*/
+
+#corp-text.dark-mode{
+  color: #757575;
+}
+
 .grid-parent {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
@@ -409,6 +463,76 @@ header ul a {
   grid-row-start: 4;
 }
 
+.text1{
+  color: black;
+  text-decoration: none;
+}
+
+.text2{
+  color: black;
+  text-decoration: none;
+}
+
+.text3{
+  color: black;
+  text-decoration: none;
+}
+
+.text4{
+  color: black;
+  text-decoration: none;
+}
+
+.text1.dark-mode{
+  color: white;
+  text-decoration: none;
+}
+
+.text2.dark-mode{
+  color: white;
+  text-decoration: none;
+}
+
+.text3.dark-mode{
+  color: white;
+  text-decoration: none;
+}
+
+.text4.dark-mode{
+  color: white;
+  text-decoration: none;
+}
+
+.div1.dark-mode:hover{
+  grid-column: span 2/span 2;
+  grid-row: span 3/span 3;
+  box-shadow: 1px 1px 3px white;
+}
+
+.div2.dark-mode:hover{
+  grid-column: span 3/span 3;
+  grid-row: span 3/span 3;
+  grid-column-start: 3;
+  grid-row-start: 1;
+  box-shadow: 1px 1px 3px white;
+}
+
+.div3.dark-mode:hover{
+  grid-column: span 3/span 3;
+  grid-row: span 3/span 3;
+  grid-column-start: 1;
+  grid-row-start: 4;
+  box-shadow: 1px 1px 3px white;
+}
+
+.div4.dark-mode:hover{
+  grid-column: span 2/span 2;
+  grid-row: span 3/span 3;
+  grid-column-start: 4;
+  grid-row-start: 4;
+  box-shadow: 1px 1px 3px white;
+}
+
 .container {
   width: 80%;
   margin: 0 auto;
@@ -440,6 +564,15 @@ header ul a {
 
 .card {
   background-color: #f9f9f9;
+  padding: 20px;
+  width: 30%;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  display: block;
+}
+
+.card.dark-mode {
+  background-color: #2A2A2A;
   padding: 20px;
   width: 30%;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
